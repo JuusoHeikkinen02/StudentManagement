@@ -24,18 +24,27 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//Configure the HTTP request pipeline.
+//if (app.Environment.IsDevelopment())
+//{
+//    app.MapControllers();
+//    app.MapOpenApi();
+//    app.UseSwagger();
+//    app.UseSwaggerUI(options =>
+//    {
+//        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Student Management API v1");
+//        options.RoutePrefix = string.Empty; // Makes Swagger UI available at root URL
+//    });
+//}
+
+app.MapControllers();
+app.MapOpenApi();
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    app.MapControllers();
-    app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Student Management API v1");
-        options.RoutePrefix = string.Empty; // Makes Swagger UI available at root URL
-    });
-}
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Student Management API v1");
+    options.RoutePrefix = string.Empty; // Makes Swagger UI available at root URL
+});
 
 app.UseHttpsRedirection();
 
